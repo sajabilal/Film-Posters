@@ -1,4 +1,4 @@
-Download requirements.txt.
+Download requirements.txt. BY pip install -r requirements.txt  in terminal 
 
 The app is in the main.py file .
 
