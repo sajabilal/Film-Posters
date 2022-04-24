@@ -1,8 +1,19 @@
 # syntax=docker/dockerfile:1
-FROM python:3.6.8-alpine3.9
-COPY . .
-WORKDIR .
+FROM alpine
 
-RUN pip install requirements.txt
+RUN apk add --no-cache python3-dev && apk add py3-pip
+
+RUN pip3 install --upgrade pip
+
+WORKDIR /app
+
+COPY . /app
+
+RUN mkdir -p ./app/functions ./app/static
+COPY ./functions/* ./app/functions
+COPY ./static/* ./app/static
+
+
+RUN pip install -r requirements.txt
 
 CMD  ["flask", "run", "--host", "0.0.0.0", "--port", "5000"]

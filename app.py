@@ -6,9 +6,9 @@ from functions.jpg_func import search_and_down
 from pymongo import MongoClient
 
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb://localhost:5000"
-CONNECTION_STRING = "mongodb+srv://basbusa:16456145@cluster0.jvols.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-client = pymongo.MongoClient(CONNECTION_STRING)
+app.config["MONGO_URI"] = "mongodb://db_host:27017"
+#CONNECTION_STRING = "mongodb+srv://basbusa:16456145@cluster0.jvols.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+client = pymongo.MongoClient("mongodb://db_host:27017")
 
 db = db = client.get_database('Moviesproject')
 user_collection = pymongo.collection.Collection(db, 'Posters')
