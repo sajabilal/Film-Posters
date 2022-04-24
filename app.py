@@ -30,7 +30,7 @@ def result():
     return render_template("result.html")
 
 @app.route("/list", methods=['GET', 'POST'])
-def database_add():
+def database_list():
     emp_list = db.db.collection.find()
     return render_template('list.html',emp_list=emp_list)
 
