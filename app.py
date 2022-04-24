@@ -1,4 +1,6 @@
 import json
+import shutil
+import requests
 from datetime import datetime
 import pymongo
 from flask import Flask, render_template, request, jsonify
@@ -10,7 +12,7 @@ app.config["MONGO_URI"] = "mongodb://db_host:27017"
 #CONNECTION_STRING = "mongodb+srv://basbusa:16456145@cluster0.jvols.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 client = pymongo.MongoClient("mongodb://db_host:27017")
 
-db = db = client.get_database('Moviesproject')
+db = db = client.get_database('oviesprojectM')
 user_collection = pymongo.collection.Collection(db, 'Posters')
 @app.route("/")
 @app.route("/home")

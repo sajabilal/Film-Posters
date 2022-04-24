@@ -39,4 +39,10 @@ def search_and_down(name): # difining a func that will take the name of the ente
         url = "{0}{1}{2}".format(base_url, max_size, rel_path)
         poster_urls.append(url)
         wanted_poster = poster_urls[0] #for now taking the first movie link future challange: give the user an chois from many options.
-    return wanted_poster  #gets the first movie link
+        return wanted_poster
+    r = requests.get(poster_urls[0])
+    filetype = r.headers['content-type'].split('/')[-1]
+    filename = 'poster_{0}.{1}'.format(name, filetype)
+    with open(filename, 'wb') as w:
+        w.write(r.content)
+
