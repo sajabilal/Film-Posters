@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <title>Poster</title>
+    <style>
+        body {
+            background-image: url({{ url_for('static', filename='movie.jpg') }});
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            }
+
+        </style>
+</head>
+<body>
+    <form method="POST">
+        <h1>Here is your poster!</h1>
+        <a href="/">Return home</a>
+    </form>
+</body>
+</html>

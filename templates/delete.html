@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+    <title>Poster delete</title>
+    <style>
+        body {
+            background-image: url({{ url_for('static', filename='movie.jpg') }});
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            }
+
+        </style>
+</head>
+<body>
+    <form class = "grid" action  = "/delete" method="POST">
+        <center>
+    <label for="fname"><h1>Enter poster name:</h1></label>
+    <input type="text" id="fname" name="fname"><br><br>
+    <input type="submit" value="Submit">
+        </center>
+    </form>
+    <center><a href="/"><h1>Return home</h1></a></center>
+
+</body>
+</html>

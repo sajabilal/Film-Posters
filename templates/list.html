@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+    <title>Poster list</title>
+    <style>
+        body {
+            background-image: url({{ url_for('static', filename='movie.jpg') }});
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover;
+            }
+
+        </style>
+</head>
+<body>
+    {% for emp in emp_list %}
+    <center><h1 style="color:black"><td>{{ emp['mvname'] }}</td></h1></center>
+    <center><h2 style="color:black"></h2style><td>{{ emp['mvurl'] }}</td></h2></center>
+    {% endfor %}
+        <center><a href="/delete"><h2 style="color:black;">Delete a poster</h2></center>
+        <center><a href="/"><h2 style="color:black;">Return home</h2></a></center>
+
+</body>
+</html>
