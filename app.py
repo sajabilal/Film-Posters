@@ -4,6 +4,7 @@ import requests
 from datetime import datetime
 import pymongo
 from flask import Flask, render_template, request, jsonify
+from functions.pymongo_intr import poster_down
 from functions.jpg_func import search_and_down
 from pymongo import MongoClient
 
@@ -12,7 +13,7 @@ app.config["MONGO_URI"] = "mongodb://db_host:27017"
 #CONNECTION_STRING = "mongodb+srv://basbusa:16456145@cluster0.jvols.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
 client = pymongo.MongoClient("mongodb://db_host:27017")
 
-db = db = client.get_database('oviesprojectM')
+db = db = client.get_database('Moviesproject')
 user_collection = pymongo.collection.Collection(db, 'Posters')
 @app.route("/")
 @app.route("/home")
@@ -23,12 +24,14 @@ def result():
     if request.method == 'POST':
         output = request.form.to_dict()
         global name
+        var = 2
         name = output["mvname"]
         global resultmv
         resultmv = f'<img src="{search_and_down(name)}">'
         mv_url = search_and_down(name)
         db.db.collection.insert_one({"mvname" : name, "mvurl" : mv_url, "status" : 1})
-        return render_template("result.html") + resultmv + "<h5>Img added to database</h5>"
+        poster_down(name, mv_url)
+        return render_template("result.html") + resultmv + "<h5>Img uploaded to database</h5>"
     return render_template("result.html")
 
 @app.route("/list", methods=['GET', 'POST'])

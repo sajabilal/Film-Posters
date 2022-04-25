@@ -12,7 +12,7 @@ COPY . /app
 RUN mkdir -p ./app/functions ./app/static
 COPY ./functions/* ./app/functions
 COPY ./static/* ./app/static
-
+COPY ./temp_content/* ./app/temp_content
 
 RUN pip install -r requirements.txt
 

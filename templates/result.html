@@ -4,7 +4,7 @@
     <title>Poster</title>
     <style>
         body {
-            background-image: url({{ url_for('static', filename='movie.jpg') }});
+            background-image: url({{ url_for('static', filename='new_poster.jpg') }});
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -15,7 +15,7 @@
 <body>
     <form method="POST">
         <h1>Here is your poster!</h1>
-        <a href="/">Return home</a>
+        <a href="/">Return home</a><br><a href="/list">Poster collection</a>
     </form>
 </body>
 </html>
