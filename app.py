@@ -31,7 +31,8 @@ def result():
         mv_url = search_and_down(name)
         download_poster = down_req(name, mv_url)
         db.db.collection.insert_one({"mvname" : name, "mvurl" : mv_url, 'UploadDate' : datetime.now()})
-        return render_template("result.html") + resultmv
+        return render_template("result.html") + resultmv + '<a href="resultmv" download></a>'
+
     return render_template("result.html") + resultmv
 
 

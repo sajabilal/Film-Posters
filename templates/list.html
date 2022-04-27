@@ -13,12 +13,19 @@
         </style>
 </head>
 <body>
-    {% for emp in emp_list %}
-    <center><h1 style="color:white"><td>{{ emp['mvname'] }}</td></h1></center>
-    <center><h1><img src="{{ emp['mvurl'] }}"></h1></center>
-    {% endfor %}
-    <h1><a href="/delete"><h2 style="color:white;">Delete a poster</h2></a></h1>
-        <h1><a href="/"><h2 style="color:white;">Return home</h2></a></h1>
 
+    <div style="display:flex;flex-wrap: wrap;justify-content: center;align-items: center;">
+        {% for emp in emp_list %}
+        <div style="margin: 15px; flex: 0 0 22%">
+            <div><h1 style="color:white"><td>{{ emp['mvname'] }}</td></h1></div>
+            <div><h1><img src="{{ emp['mvurl'] }}"></h1></div>
+
+
+        </div>
+        {% endfor %}
+
+        </div>
+    <h1><a href="/delete"><h2 style="color:white;">Delete a poster</h2></a></h1>
+    <h1><a href="/"><h2 style="color:white;">Return home</h2></a></h1>
     </body>
 </html>
