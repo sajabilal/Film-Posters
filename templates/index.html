@@ -4,7 +4,7 @@
 
         <style>
         body {
-            background-image: url({{ url_for('static', filename='new_poster.jpg') }});
+            background-image: url({{ url_for('static', filename='newnew.jpg') }});
             background-repeat: no-repeat;
             background-attachment: fixed;
             background-size: cover;
@@ -15,16 +15,17 @@
     </head>
 
     <body>
-
+        <center><h1 style="color:white">Welcome to movies posters app</h1></center>
+        <br>
         <form class = "grid" action  = "/result" method="POST">
               <center>
               </center>
-                <center><label for = "Name"><h1>Enter movie name: </h1></label></center>
+                <center><label style="color:white" for = "Name"><h1>Enter movie name: </h1></label></center>
                 <br>
                 <center><input type="text" name="mvname" id="name"></center>
                 <br>
             <center><input type="Submit" class ="file_submit"></center>
-            <center><a href="/list"><h2 style="color:black;">View Collection</h2></a></center>
+            <center><a href="/list"><h2 style="color:white;">View Collection</h2></a></center>
         </form>
             
     </body>

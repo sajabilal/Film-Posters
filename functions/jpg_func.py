@@ -1,6 +1,11 @@
-import shutil
+import pymongo
 import requests
 import imdb
+
+# CONNECTION_STRING = "mongodb://db_host:27017"
+client = pymongo.MongoClient("mongodb://db_host:27017")
+db = client.get_database('Moviesproject')
+
 
 
 def search_and_down(name): # difining a func that will take the name of the enterd movie and give is jpg link
@@ -35,17 +40,17 @@ def search_and_down(name): # difining a func that will take the name of the ente
         IMG_PATTERN = 'http://api.themoviedb.org/3/movie/{imdbid}/images?api_key={key}'
         r = requests.get(IMG_PATTERN.format(key=KEY, imdbid=movieid)) #formatting the api key and movieid form search im tmdb
         api_response = r.json()
-        posters = api_response['posters'] #locating the poster jpg name in the api_response json file
+        posters = api_response['posters']
+        #locating the poster jpg name in the api_response json file
         poster_urls = [] #making a list that will contain the poster jpg
         for poster in posters: #listing the movie jpg links
             rel_path = poster['file_path']
             url = "{0}{1}{2}".format(base_url, max_size, rel_path)
             poster_urls.append(url)
             wanted_poster = poster_urls[0]
-            #for now taking the first movie link future challange: give the user an chois from many options.
+            #for now taking the first movie link future challange: give the user an choes from many options.
             return wanted_poster
-        def none():
-            download_url = wanted_poster
-            r = requests.get(download_url)
+
+
 
 

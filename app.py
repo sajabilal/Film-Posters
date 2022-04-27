@@ -4,9 +4,10 @@ import requests
 from datetime import datetime
 import pymongo
 from flask import Flask, render_template, request, jsonify
-from functions.pymongo_intr import poster_down
+from functions.pymongo_intr import down_req
 from functions.jpg_func import search_and_down
 from pymongo import MongoClient
+
 
 app = Flask(__name__)
 app.config["MONGO_URI"] = "mongodb://db_host:27017"
@@ -24,15 +25,15 @@ def result():
     if request.method == 'POST':
         output = request.form.to_dict()
         global name
-        var = 2
         name = output["mvname"]
         global resultmv
         resultmv = f'<img src="{search_and_down(name)}">'
         mv_url = search_and_down(name)
-        db.db.collection.insert_one({"mvname" : name, "mvurl" : mv_url, "status" : 1})
-        poster_down(name, mv_url)
-        return render_template("result.html") + resultmv + "<h5>Img uploaded to database</h5>"
-    return render_template("result.html")
+        download_poster = down_req(name, mv_url)
+        db.db.collection.insert_one({"mvname" : name, "mvurl" : mv_url, 'UploadDate' : datetime.now()})
+        return render_template("result.html") + resultmv
+    return render_template("result.html") + resultmv
+
 
 @app.route("/list", methods=['GET', 'POST'])
 def database_list():
@@ -50,6 +51,15 @@ def delete():
         return render_template('delete.html', poster_list=poster_list) + "<h1>Poster deleted</h1>"
     return render_template('delete.html')
 
+@app.errorhandler(500)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 500
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
 
 
 #return f'<img src="{search_and_down(name)}">'
